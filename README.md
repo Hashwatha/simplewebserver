@@ -1,5 +1,5 @@
 # EX01 Developing a Simple Webserver
-## Date:
+## Date: 09/03/2024
 
 ## AIM:
 To develop a simple webserver to serve html pages.
@@ -22,34 +22,65 @@ Testing the webserver.
 
 ## PROGRAM:
 ```
-from http.server import HTTPServer,BaseHTTPRequestHandler
-
-content='''
-<!doctype html>
+from http.server import HTTPServer, BaseHTTPRequestHandler
+content = """
 <html>
-<head>
-<title> My Web Server</title>
-</head>
-<body>
-<h1>Welcome</h1>
-</body>
+	<title>SOFTWARE COMPANIES</title>
+		<body>
+			<table border="3" cellspacing="4">
+			<caption><b>Top Five Revenue Generating Software Companies</b></caption>
+			<tr>
+				<th>S.NO</th>
+				<th>Company</th>
+				<th>Revenue</th>
+			</tr>
+			<tr>
+				<td>1</th>
+				<td>Microsoft</td>
+				<td>65 Billion</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Oracle</td>
+				<td>25 Billion</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>IBM</td>
+				<td>27.9 Billion</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>SAP</td>
+				<td>4.9 Billion</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>Symantec</td>
+				<td>6.5 Billion</td>
+			</tr>
+			</table>
+		</body>
 </html>
-'''
-
-class MyServer(BaseHTTPRequestHandler):
+"""
+class myhandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        print("Get request received...")
-        self.send_response(200) 
-        self.send_header("content-type", "text/html")       
+        print("request received")
+        self.send_response(200)
+        self.send_header('content-type', 'text/html; charset=utf-8')
         self.end_headers()
         self.wfile.write(content.encode())
-
-print("This is my webserver") 
-server_address =('',8000)
-httpd = HTTPServer(server_address,MyServer)
+server_address = ('',8000)
+httpd = HTTPServer(server_address,myhandler)
+print("my webserver is running...")
 httpd.serve_forever()
+
 ```
 ## OUTPUT:
+
+![Screenshot 2024-03-19 102750](https://github.com/Hashwatha/simplewebserver/assets/150231431/9950096c-7710-4ff1-8cf7-612c5dd9471d)
+
+![Screenshot 2024-03-19 102828](https://github.com/Hashwatha/simplewebserver/assets/150231431/692eb0f2-b4b2-409f-a34a-1b691b640e26)
 
 
 ## RESULT:
